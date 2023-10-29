@@ -1,11 +1,12 @@
 <?php
-        // Recuperare i dati dal form
+        if(isset($_POST["nome"]) & isset($_POST["voto"]))
+        {
 
-        // Caricare i dati esistenti dal file JSON
-
-        // Aggiungere nuovi dati
-
-        // Scrivere i dati aggiornati su file JSON
-
-        // Redirect alla pagina principale
+                $studenti = json_decode(file_get_contents('data.json'), true);
+                $studente["nome"] = $_POST["nome"];
+                $studente["voto"] = $_POST["voto"];
+                array_push($studenti, $studente);
+                file_put_contents('data.json', json_encode($studenti));
+                header("Location: index.php");
+        }
 ?>

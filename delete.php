@@ -1,13 +1,10 @@
 <?php
-    
-    // Caricare i dati dal file JSON
+        if(isset($_GET["index"]))
+        {
 
-    // Trovare lo studente con il nome fornito
-
-    // Eliminare lo studente trovato
-    
-    // Aggiorna il file JSON
-
-    // Reindirizza alla pagina index.php
-
+                $studenti = json_decode(file_get_contents('data.json'), true);
+                array_splice($studenti, $_GET["index"], 1);
+                file_put_contents('data.json', json_encode($studenti));
+                header("Location: index.php");
+        }
 ?>

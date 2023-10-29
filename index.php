@@ -30,7 +30,32 @@
 
     <?php
     
-    // Caricare qui i dati dal file JSON
+    if(file_exists('data.json'))
+    {
+        $studenti = json_decode(file_get_contents('data.json'), true);
+        ?>
+        <table>
+        <tr>
+            <th>Nome e cognome</th>
+            <th>Voto</th>
+            <th>Link eliminazione</th>
+        </tr>
+
+        <?php
+        for($i = 0; $i < count($studenti); $i++)
+        {
+
+
+            echo "<tr>";
+            echo '<td>' . $studenti[$i]["nome"] .'</td>';
+            echo '<td>' . $studenti[$i]["voto"] .'</td>';
+            echo '<td> <a href="delete.php?index='. $i . '"> Elimina </a></td>';
+            echo "</tr>";
+
+        }
+        echo "</table>";
+
+    }
 
     // Visualizzare qui gli studenti e i voti in una tabella
 
